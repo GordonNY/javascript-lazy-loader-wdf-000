@@ -2,6 +2,7 @@
 
 // this is the base API url
 var baseUrl = "http://mimeocarlisting.azurewebsites.net/api/cars/";
+var page = 3;
 
 function formatCars(carsJSON) {
   // this function shold return a string of properly formatted html
@@ -16,9 +17,9 @@ function formatCars(carsJSON) {
   var rowDiv = "<div class=\"row\">";
   $.each(carsJSON, function(index, car) {
     rowDiv += "<div class=\"col-md-4 car\">";
-    rowDiv += `<h2>${car.Make}</h2>`;
-    rowDiv += `<p><strong>Model:</strong> ${car.Model}</p>`;
-    rowDiv += `<p><strong>Year:</strong> ${car.Year}</p>`;
+    rowDiv += "<h2>" + car.Make + "</h2>";
+    rowDiv += "<p><strong>Model:</strong> " + car.Model + "</p>";
+    rowDiv += "<p><strong>Year:</strong> " + car.Year + "</p>";
     rowDiv += "</div>";
   });
   rowDiv += "</div>";
@@ -36,8 +37,8 @@ function fetchJSON() {
   // this function will make the ajax call
   // on success of the ajax call, it will pass the returned data
   // to addCarsToDOM()
-  window.index ? window.index ++ : window.index = 1;
-  let url = baseUrl + `${window.index}/6`;
+  var url = baseUrl + page + "/3";
+  page += 1;
   $.ajax({
     url: url,
     contentType: 'application/json',
